@@ -37,7 +37,9 @@ fun Application.configureRouting(roomRepository: IRoomRepository) {
             val roomName = call.parameters["room"] ?: ""
 
             val room = roomRepository.join(roomName, player)
-            call.respond(room)
+            room?.let { room ->
+                call.respond(room)
+            } ?: call.respond(HttpStatusCode.NotFound)
         }
 
         get("/room") {

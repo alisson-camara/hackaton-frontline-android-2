@@ -42,15 +42,16 @@ class RoomRepository(private val playerRepository: IPlayerRepository) : IRoomRep
             RoomDAO.find { RoomTable.name eq roomName }.firstOrNull()
         }
 
-        val player = PlayerEntity(
+        val playerEntity = PlayerEntity(
             name = player,
             point = "?",
             roomId = room?.id ?: return null
         )
 
-        val player = playerRepository.create(player)
-        val roomWithNewPlayer = room.toModel()
+        playerRepository.create(playerEntity)
 
-        return room.toModel()
+        val players = playerRepository.getByRoomId(room.id.value)
+
+        return room.toModel(players)
     }
 }
