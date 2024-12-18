@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    connectToPostgres(true)
+//    connectToPostgres(true)
 
     val taskRepository = PostgresTaskRepository()
     val playerRepository = PlayerRepository()

@@ -1,5 +1,6 @@
 package com.workshop
 
+import com.workshop.db.RoomTable
 import com.workshop.db.TaskTable
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -30,6 +31,7 @@ fun Application.configureDatabases() {
     )
     transaction {
         SchemaUtils.create(TaskTable)
+        SchemaUtils.create(RoomTable)
     }
 }
 /**
