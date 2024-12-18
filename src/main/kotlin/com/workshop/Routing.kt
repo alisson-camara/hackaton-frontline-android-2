@@ -29,6 +29,7 @@ fun Application.configureRouting(roomRepository: IRoomRepository) {
             val params = call.parameters["room"]
 
             call.respondText("Hello World! This route create a room")
+            //test
         }
 
         // Static plugin. Try to access `/static/index.html`
