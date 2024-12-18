@@ -1,5 +1,6 @@
 package com.workshop
 
+import com.workshop.db.PlayerTable
 import com.workshop.db.RoomTable
 import com.workshop.db.TaskTable
 import io.ktor.http.*
@@ -32,6 +33,7 @@ fun Application.configureDatabases() {
     transaction {
         SchemaUtils.create(TaskTable)
         SchemaUtils.create(RoomTable)
+        SchemaUtils.create(PlayerTable)
     }
 }
 /**
