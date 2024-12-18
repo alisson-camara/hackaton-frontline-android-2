@@ -18,6 +18,6 @@ fun Application.module() {
     val roomRepository = RoomRepository(playerRepository)
 
     configureSerialization(taskRepository)
-//    configureDatabases()
     configureRouting(roomRepository)
+    configureDatabases()
 }
