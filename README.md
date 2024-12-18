@@ -65,7 +65,7 @@ URL: {BASE_URL}/sendvote?room=SalaDaPaula&player=Paula Method: POST Protocol: ht
 
 ==========================================================
 
-URL: {BASE_URL}/join-room?room=SalaDaPaula&player=Paula Method: POST Protocol: http/1.1 Status: Complete Response: 200 OK SSL: Yes
+URL: {BASE_URL}/join-room?room=SalaDaPaula&player=Paula Method: POST Protocol: http/1.1 Status: Complete Response: 200 OK SSL: Yes -> OK
 
 ---------- Request ----------
 

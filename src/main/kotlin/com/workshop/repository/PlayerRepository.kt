@@ -7,6 +7,8 @@ import com.workshop.db.suspendTransaction
 import com.workshop.model.PlayerModel
 import com.workshop.model.toModel
 import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.sql.and
+import org.jetbrains.exposed.sql.or
 
 class PlayerRepository : IPlayerRepository {
     override suspend fun create(player: PlayerEntity) {
@@ -24,6 +26,13 @@ class PlayerRepository : IPlayerRepository {
             PlayerDAO
                 .find { PlayerTable.room eq roomId }
                 .map(PlayerDAO::toModel)
+        }
+    }
+
+    override suspend fun removePlayer(player: PlayerEntity, roomId: Int) {
+        suspendTransaction {
+            PlayerDAO
+                .find { PlayerTable.room eq roomId }
         }
     }
 }

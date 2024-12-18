@@ -51,6 +51,14 @@ fun Application.configureRouting(roomRepository: IRoomRepository) {
             } ?: call.respond(HttpStatusCode.NotFound)
         }
 
+        post("/remove-player") {
+            val player = call.parameters["player"] ?: ""
+            val roomName = call.parameters["room"] ?: ""
+
+            val room = roomRepository.getByRoomName(roomName)
+
+        }
+
         // Static plugin. Try to access `/static/index.html`
         staticResources("/static", "static")
     }
