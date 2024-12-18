@@ -2,6 +2,7 @@ package com.workshop
 
 import com.workshop.model.FakeTaskRepository
 import com.workshop.model.PostgresTaskRepository
+import com.workshop.repository.PlayerRepository
 import com.workshop.repository.RoomRepository
 import io.ktor.server.application.*
 
@@ -12,7 +13,8 @@ fun main(args: Array<String>) {
 fun Application.module() {
     //val repository = PostgresTaskRepository()
     val taskRepository = FakeTaskRepository()
-    val roomRepository = RoomRepository()
+    val playerRepository = PlayerRepository()
+    val roomRepository = RoomRepository(playerRepository)
     configureSerialization(taskRepository)
     //configureDatabases()
     configureRouting(roomRepository)
