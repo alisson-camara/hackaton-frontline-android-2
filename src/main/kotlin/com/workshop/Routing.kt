@@ -1,5 +1,7 @@
 package com.workshop
 
+import com.workshop.repository.IRoomRepository
+import com.workshop.repository.RoomRepository
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
@@ -10,7 +12,7 @@ import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
 
-fun Application.configureRouting() {
+fun Application.configureRouting(roomRepository: IRoomRepository) {
     install(StatusPages) {
         exception<Throwable> { call, cause ->
             call.respondText(text = "500: $cause" , status = HttpStatusCode.InternalServerError)
@@ -23,6 +25,9 @@ fun Application.configureRouting() {
         }
 
         post("/create-room") {
+            val moderator = call.parameters["moderator"]
+            val params = call.parameters["room"]
+
             call.respondText("Hello World! This route create a room")
         }
 
