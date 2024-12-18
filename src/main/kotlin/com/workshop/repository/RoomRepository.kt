@@ -2,6 +2,7 @@ package com.workshop.repository
 
 import com.workshop.PlayerEntity
 import com.workshop.db.RoomDAO
+import com.workshop.db.RoomTable
 import com.workshop.db.suspendTransaction
 import com.workshop.model.PlayerModel
 import com.workshop.model.Room
@@ -26,5 +27,18 @@ class RoomRepository(private val playerRepository: IPlayerRepository) : IRoomRep
         playerRepository.create(player)
 
         return room.copy(players = listOf(player.toModel()))
+    }
+
+    override suspend fun get(roomName: String): Room {
+        suspendTransaction {
+            RoomDAO.find {
+                RoomTable.name eq roomName
+            }.map{
+                name = roomDAO.name,
+                moderator = roomDAO.moderator,
+                currentTask = roomDAO.currentTask,
+                players =
+            }
+        }
     }
 }

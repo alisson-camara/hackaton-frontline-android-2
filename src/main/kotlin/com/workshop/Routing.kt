@@ -36,6 +36,15 @@ fun Application.configureRouting(roomRepository: IRoomRepository) {
             //test
         }
 
+
+        get("/room"){
+            val roomName = call.parameters["room"] ?: ""
+
+            val room = roomRepository.get(roomName)
+
+            call.respond(room)
+        }
+
         // Static plugin. Try to access `/static/index.html`
         staticResources("/static", "static")
     }

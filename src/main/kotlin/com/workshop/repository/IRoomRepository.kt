@@ -4,4 +4,6 @@ import com.workshop.model.Room
 
 interface IRoomRepository {
     suspend fun create(roomName: String, moderator: String): Room
+
+    suspend fun get(roomName: String): Room
 }
