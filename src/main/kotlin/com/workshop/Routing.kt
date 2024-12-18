@@ -1,7 +1,6 @@
 package com.workshop
 
 import com.workshop.repository.IRoomRepository
-import com.workshop.repository.RoomRepository
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
@@ -16,7 +15,7 @@ import io.ktor.server.routing.routing
 fun Application.configureRouting(roomRepository: IRoomRepository) {
     install(StatusPages) {
         exception<Throwable> { call, cause ->
-            call.respondText(text = "500: $cause" , status = HttpStatusCode.InternalServerError)
+            call.respondText(text = "500: $cause", status = HttpStatusCode.InternalServerError)
         }
     }
     routing {
@@ -30,19 +29,24 @@ fun Application.configureRouting(roomRepository: IRoomRepository) {
             val roomName = call.parameters["room"] ?: ""
 
             val room = roomRepository.create(roomName, moderator)
-
-//            call.respondText("Hello World! This route create a room")
             call.respond(room)
-            //test
         }
 
-
-        get("/room"){
+        post("/join-room") {
+            val player = call.parameters["player"] ?: ""
             val roomName = call.parameters["room"] ?: ""
 
-            val room = roomRepository.get(roomName)
-
+            val room = roomRepository.join(roomName, player)
             call.respond(room)
+        }
+
+        get("/room") {
+            val roomName = call.parameters["room"] ?: ""
+            val room = roomRepository.getByRoomName(roomName)
+
+            room?.let { room ->
+                call.respond(room)
+            } ?: call.respond(HttpStatusCode.NotFound)
         }
 
         // Static plugin. Try to access `/static/index.html`

@@ -5,7 +5,7 @@ URL: https://hackaton-frontline-android-2-7e77f3b0b435.herokuapp.com/
 
 Exemplos de Requests: =====================
 
-URL: {BASE_URL}/room?room=SalaDaPaula Method: GET Protocol: http/1.1 Status: Complete Response: 200 OK SSL: Yes
+URL: {BASE_URL}/room?room=SalaDaPaula Method: GET Protocol: http/1.1 Status: Complete Response: 200 OK SSL: Yes -> OK
 
 ---------- Request ----------
 
@@ -17,7 +17,7 @@ URL: {BASE_URL}/room?room=SalaDaPaula Method: GET Protocol: http/1.1 Status: Com
 
 ====================================================
 
-URL: {BASE_URL}/create-room?room=SalaDaPaula&moderator=Paula Method: POST Protocol: http/1.1 Status: Complete Response: 200 OK SSL: Yes
+URL: {BASE_URL}/create-room?room=SalaDaPaula&moderator=Paula Method: POST Protocol: http/1.1 Status: Complete Response: 200 OK SSL: Yes -> OK
 
 ---------- Request ----------
 
