@@ -11,11 +11,13 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    //val repository = PostgresTaskRepository()
-    val taskRepository = FakeTaskRepository()
+    connectToPostgres(true)
+
+    val taskRepository = PostgresTaskRepository()
     val playerRepository = PlayerRepository()
     val roomRepository = RoomRepository(playerRepository)
+
     configureSerialization(taskRepository)
-    //configureDatabases()
+//    configureDatabases()
     configureRouting(roomRepository)
 }
