@@ -7,7 +7,9 @@ import com.workshop.db.suspendTransaction
 import com.workshop.model.PlayerModel
 import com.workshop.model.toModel
 import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.and
+import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.or
 
 class PlayerRepository : IPlayerRepository {
@@ -31,8 +33,9 @@ class PlayerRepository : IPlayerRepository {
 
     override suspend fun removePlayer(player: PlayerEntity, roomId: Int) {
         suspendTransaction {
-            PlayerDAO
-                .find { PlayerTable.room eq roomId }
+            PlayerTable.deleteWhere {
+                (room eq roomId) and (name eq player.name)
+            }
         }
     }
 }

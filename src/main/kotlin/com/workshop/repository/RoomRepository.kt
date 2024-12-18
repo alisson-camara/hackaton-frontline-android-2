@@ -54,4 +54,10 @@ class RoomRepository(private val playerRepository: IPlayerRepository) : IRoomRep
 
         return room.toModel(players)
     }
+
+    override suspend fun removePlayer(playerName: String, roomName: String) {
+        val room = suspendTransaction {
+            RoomDAO.find { RoomTable.name eq roomName }
+        }
+    }
 }

@@ -53,9 +53,10 @@ fun Application.configureRouting(roomRepository: IRoomRepository) {
 
         post("/remove-player") {
             val player = call.parameters["player"] ?: ""
-            val roomName = call.parameters["room"] ?: ""
+            val roomId = call.parameters["room"] ?: ""
 
-            val room = roomRepository.getByRoomName(roomName)
+            val room = roomRepository.getByRoomName(roomId)
+
 
         }
 
