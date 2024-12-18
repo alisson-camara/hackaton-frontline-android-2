@@ -3,7 +3,7 @@ package com.workshop.repository
 import com.workshop.db.PlayerDAO
 import com.workshop.model.PlayerModel
 
-class PlayerRepository() : IPlayerRepository {
+class PlayerRepository : IPlayerRepository {
     override fun create(playerModel: PlayerModel) {
         PlayerDAO.new {
             name = playerModel.name
