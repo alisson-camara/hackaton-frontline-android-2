@@ -6,7 +6,8 @@ import com.workshop.model.Room
 
 class RoomRepository(private val playerRepository: IPlayerRepository) : IRoomRepository {
     override fun create(roomName: String, moderator: String): Room {
-        val room = Room(roomName, "Task 1", moderator)
+
+        val room = Room(roomName, moderator, "Task 1", emptyList())
 
         val roomDao = RoomDAO.new {
             this.name = room.name
@@ -14,9 +15,9 @@ class RoomRepository(private val playerRepository: IPlayerRepository) : IRoomRep
             this.moderator = room.moderator
         }
 
-        val player = PlayerModel(roomDao.moderator, "?", roomDao.id)
+        val player = PlayerModel(roomDao.moderator, "?", roomDao.id.value)
         playerRepository.create(player)
 
-        return room
+        return room.copy(players = listOf(player))
     }
 }
