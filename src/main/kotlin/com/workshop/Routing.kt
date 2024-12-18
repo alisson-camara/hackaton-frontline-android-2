@@ -26,6 +26,10 @@ fun Application.configureRouting() {
             call.respondText("Hello World!")
         }
 
+        post("/create-room") {
+            call.respondText("Hello World! This route create a room")
+        }
+
         // Static plugin. Try to access `/static/index.html`
         staticResources("/static", "static")
     }
